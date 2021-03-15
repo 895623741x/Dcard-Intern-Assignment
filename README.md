@@ -1,3 +1,5 @@
+#如何啟動?
+
 ## Step 1
 
 在 vs code 的 terminal 輸入 `git clone https://github.com/895623741x/Dcard-Intern-Assignment.git`
