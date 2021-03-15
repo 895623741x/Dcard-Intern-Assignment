@@ -1,0 +1,9 @@
+.options {
+	display: grid;
+	grid-template-columns: repeat(10, auto);
+	list-style: none;
+}
+
+.header {
+	background-color: rgba(0, 0, 0, 0.247);
+}
