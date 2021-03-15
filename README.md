@@ -22,4 +22,3 @@
 
 # 作業架構設計說明
 
-![image](https://user-images.githubusercontent.com/52303790/111208145-a3326480-8587-11eb-8b6b-ba6522fd50d8.png)
