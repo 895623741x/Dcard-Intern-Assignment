@@ -14,7 +14,7 @@
 
 ## Step 4
 
-在 terminal 輸入 `npm start`。 等待幾秒鐘後, 就可以在網頁上使用了
+在 terminal 輸入 `npm start`。 等待幾秒鐘後, 就可以在網頁上使用
 
 ## Step 5
 
