@@ -1,6 +1,6 @@
 ## Step 1
 
-在 vs code 的 terminal 輸入 git clone https://github.com/895623741x/Dcard-Intern-Assignment.git
+在 vs code 的 terminal 輸入 `git clone https://github.com/895623741x/Dcard-Intern-Assignment.git`
 
 ## Step 2
 
@@ -8,8 +8,8 @@
 
 ## Step 3
 
-輸入 cd assignment 進入 react 檔案
+在 terminal 輸入 `cd assignment` 進入 react 檔案
 
 ## Step 4
 
-輸入 npm start。 等待幾秒鐘後, 就可以在網頁上使用了
+在 terminal 輸入 `npm start`。 等待幾秒鐘後, 就可以在網頁上使用了
