@@ -8,7 +8,7 @@
 
 ## Step 3
 
-cd assignment 進入 react 檔案
+輸入 cd assignment 進入 react 檔案
 
 ## Step 4
 
