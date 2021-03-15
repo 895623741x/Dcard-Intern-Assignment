@@ -18,4 +18,7 @@
 
 ## Step 5
 
-在開啟後的網址更改為 `http://localhost:3000/scenicSpot` 即可進入首頁
+將開啟後的網址更改為 `http://localhost:3000/scenicSpot` 即可進入首頁
+
+# 作業架構設計說明
+
