@@ -13,3 +13,7 @@
 ## Step 4
 
 在 terminal 輸入 `npm start`。 等待幾秒鐘後, 就可以在網頁上使用了
+
+## Step 5
+
+在開啟後的網址更改為 `http://localhost:3000/scenicSpot` 即可進入首頁
