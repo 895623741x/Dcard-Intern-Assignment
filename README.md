@@ -26,7 +26,7 @@
 # 作業架構設計說明
 
 ## 1. 
-Header 的頁面轉換我選擇router-router-dom, 如此一來在按下所選地點時就不需要每次重整頁面
+Header 的頁面轉換我選擇router-router-dom, 如此一來在按下所選地點時就不需要重整頁面
 
 ## 2. 
 對於api的串接我選擇使用 axios, 個人認為 axios 的 syntax 比 fetch 相對簡單
