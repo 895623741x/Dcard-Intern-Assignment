@@ -32,4 +32,4 @@ Header 的頁面轉換我選擇router-router-dom, 如此一來在按下所選地
 對於api的串接我選擇使用 axios, 個人認為 axios 的 syntax 比 fetch 相對簡單
 
 ## 3.
-全部景點的按鈕為"Taiwan", 其他縣市則用英文代表如金門縣為 KinmenCounty, 台南市為 Tainan
+全部景點的按鈕為"Taiwan", 其他縣市則用英文代表如金門縣為 KinmenCounty, 台南市為 Tainan 等等
