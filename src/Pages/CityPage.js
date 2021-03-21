@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import axios from "axios";
 import Header from "../Header";
 import { Cities } from "../Cities";
-import { Media } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./CityPage.css";
 
 function CityPage(props) {
@@ -11,6 +9,7 @@ function CityPage(props) {
 
 	const [selectedCity, setSelectedCity] = useState("");
 	const [spots, setSpots] = useState([]);
+	// const [data, setData] = useState([]);
 
 	if (selectedCity !== city) {
 		setSelectedCity(city);
@@ -44,16 +43,29 @@ function CityPage(props) {
 			const response = await axios.get(
 				`https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${selectedCity}?$top=30&$skip=${skip}&$format=JSON`
 			);
-			setSpots(() => {
-				let newSpots = [...spots];
-				newSpots.push(...response.data);
-				return newSpots;
+			console.log(response.data);
+
+			// setSpots(() => {
+			// 	let newSpots = [...spots];
+			// 	newSpots.push(...response.data);
+			// 	return newSpots;
+			// });
+			setSpots((prevSpots) => {
+				if (prevSpots.length === 0) {
+					return (prevSpots = [...response.data]);
+				} else {
+					let newSpots = [...prevSpots];
+					newSpots.push(...response.data);
+					return newSpots;
+				}
 			});
+
 			setHasMore(response.data.length > 0);
 		};
 
 		fetchData();
 	}, [selectedCity, skip]);
+
 	console.log(city);
 	console.log(selectedCity);
 	console.log(spots);
@@ -65,22 +77,18 @@ function CityPage(props) {
 			{spots.map((spot, index) => {
 				if (spots.length === index + 1) {
 					return (
-						<Media key={index} ref={lastSpotElementRef}>
-							<Media.Body>
-								<h5>{spot.Name}</h5>
-								<p>{spot.Description ? spot.Description : spot.DescriptionDetail}</p>
-								<p>{spot.Address}</p>
-							</Media.Body>
-						</Media>
+						<div key={index} ref={lastSpotElementRef}>
+							<h5>{spot.Name}</h5>
+							<p>{spot.Description ? spot.Description : spot.DescriptionDetail}</p>
+							<p>{spot.Address}</p>
+						</div>
 					);
 				} else {
 					return (
-						<Media key={index}>
-							<Media.Body>
-								<h5>{spot.Name}</h5>
-								<p>{spot.Description ? spot.Description : spot.DescriptionDetail}</p> <p>{spot.Address}</p>
-							</Media.Body>
-						</Media>
+						<div key={index}>
+							<h5>{spot.Name}</h5>
+							<p>{spot.Description ? spot.Description : spot.DescriptionDetail}</p> <p>{spot.Address}</p>
+						</div>
 					);
 				}
 			})}

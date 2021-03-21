@@ -35,15 +35,20 @@ function HomePage() {
 				`https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$top=30&$skip=${skip}&$format=JSON
 			`
 			);
-			// let newSpots = [...spots];
-			// newSpots.push(...response.data);
-			// setSpots(newSpots);
-			// setSpots(response.data); original code
 
-			setSpots(() => {
-				let newSpots = [...spots];
-				newSpots.push(...response.data);
-				return newSpots;
+			// setSpots(() => {
+			// 	let newSpots = [...spots];
+			// 	newSpots.push(...response.data);
+			// 	return newSpots;
+			// });
+			setSpots((prevSpots) => {
+				if (prevSpots.length === 0) {
+					return (prevSpots = [...response.data]);
+				} else {
+					let newSpots = [...prevSpots];
+					newSpots.push(...response.data);
+					return newSpots;
+				}
 			});
 			setHasMore(response.data.length > 0);
 		};
