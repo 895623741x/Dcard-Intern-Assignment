@@ -45,20 +45,30 @@ function CityPage(props) {
 			);
 			console.log(response.data);
 
-			// setSpots(() => {
-			// 	let newSpots = [...spots];
+			// 1st and most successful attempt
+			setSpots(() => {
+				let newSpots = [...spots];
+				newSpots.push(...response.data);
+				return newSpots;
+			});
+
+			// 3rd attempt
+			// setSpots((prevSpots) => {
+			// 	let newSpots = [...prevSpots];
 			// 	newSpots.push(...response.data);
 			// 	return newSpots;
 			// });
-			setSpots((prevSpots) => {
-				if (prevSpots.length === 0) {
-					return (prevSpots = [...response.data]);
-				} else {
-					let newSpots = [...prevSpots];
-					newSpots.push(...response.data);
-					return newSpots;
-				}
-			});
+
+			// 2nd attempt
+			// setSpots((prevSpots) => {
+			// 	if (prevSpots.length === 0) {
+			// 		return (prevSpots = [...response.data]);
+			// 	} else {
+			// 		let newSpots = [...prevSpots];
+			// 		newSpots.push(...response.data);
+			// 		return newSpots;
+			// 	}
+			// });
 
 			setHasMore(response.data.length > 0);
 		};

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 
 import Header from "../Header";
 import axios from "axios";
-import { Media } from "react-bootstrap";
+// import { Media } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Homepage.css";
 
@@ -36,20 +36,30 @@ function HomePage() {
 			`
 			);
 
+			// 1st and the most successful attempt
 			// setSpots(() => {
 			// 	let newSpots = [...spots];
 			// 	newSpots.push(...response.data);
 			// 	return newSpots;
 			// });
+
+			// 3rd attempt
 			setSpots((prevSpots) => {
-				if (prevSpots.length === 0) {
-					return (prevSpots = [...response.data]);
-				} else {
-					let newSpots = [...prevSpots];
-					newSpots.push(...response.data);
-					return newSpots;
-				}
+				let newSpots = [...prevSpots];
+				newSpots.push(...response.data);
+				return newSpots;
 			});
+
+			// 2nd attempt
+			// setSpots((prevSpots) => {
+			// 	if (prevSpots.length === 0) {
+			// 		return (prevSpots = [...response.data]);
+			// 	} else {
+			// 		let newSpots = [...prevSpots];
+			// 		newSpots.push(...response.data);
+			// 		return newSpots;
+			// 	}
+			// });
 			setHasMore(response.data.length > 0);
 		};
 		fetchData();
@@ -64,21 +74,17 @@ function HomePage() {
 			{spots.map((spot, index) => {
 				if (spots.length === index + 1) {
 					return (
-						<Media key={spot.ID} ref={lastSpotElementRef}>
-							<Media.Body>
-								<h5>{spot.Name}</h5>
-								<p>{spot.Description ? spot.Description : spot.DescriptionDetail}</p>
-							</Media.Body>
-						</Media>
+						<div key={spot.ID} ref={lastSpotElementRef}>
+							<h5>{spot.Name}</h5>
+							<p>{spot.Description ? spot.Description : spot.DescriptionDetail}</p>
+						</div>
 					);
 				} else {
 					return (
-						<Media key={spot.ID}>
-							<Media.Body>
-								<h5>{spot.Name}</h5>
-								<p>{spot.Description ? spot.Description : spot.DescriptionDetail}</p>
-							</Media.Body>
-						</Media>
+						<div key={spot.ID}>
+							<h5>{spot.Name}</h5>
+							<p>{spot.Description ? spot.Description : spot.DescriptionDetail}</p>
+						</div>
 					);
 				}
 			})}
