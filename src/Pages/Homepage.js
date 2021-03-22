@@ -37,18 +37,18 @@ function HomePage() {
 			);
 
 			// 1st and the most successful attempt
-			// setSpots(() => {
-			// 	let newSpots = [...spots];
-			// 	newSpots.push(...response.data);
-			// 	return newSpots;
-			// });
-
-			// 3rd attempt
-			setSpots((prevSpots) => {
-				let newSpots = [...prevSpots];
+			setSpots(() => {
+				let newSpots = [...spots];
 				newSpots.push(...response.data);
 				return newSpots;
 			});
+
+			// 3rd attempt
+			// setSpots((prevSpots) => {
+			// 	let newSpots = [...prevSpots];
+			// 	newSpots.push(...response.data);
+			// 	return newSpots;
+			// });
 
 			// 2nd attempt
 			// setSpots((prevSpots) => {

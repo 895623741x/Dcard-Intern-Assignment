@@ -11,13 +11,13 @@ function CityPage(props) {
 	const [spots, setSpots] = useState([]);
 	// const [data, setData] = useState([]);
 
-	if (selectedCity !== city) {
-		setSelectedCity(city);
-		setSpots([]);
-	}
-
 	const [skip, setSkip] = useState(0);
 	const [hasMore, setHasMore] = useState(false);
+
+	if (selectedCity !== city) {
+		setSpots([]);
+		setSelectedCity(city);
+	}
 
 	const observer = useRef();
 
@@ -61,13 +61,9 @@ function CityPage(props) {
 
 			// 2nd attempt
 			// setSpots((prevSpots) => {
-			// 	if (prevSpots.length === 0) {
-			// 		return (prevSpots = [...response.data]);
-			// 	} else {
-			// 		let newSpots = [...prevSpots];
-			// 		newSpots.push(...response.data);
-			// 		return newSpots;
-			// 	}
+			// 	let newSpots = [...prevSpots];
+			// 	newSpots.push(...response.data);
+			// 	return newSpots;
 			// });
 
 			setHasMore(response.data.length > 0);
