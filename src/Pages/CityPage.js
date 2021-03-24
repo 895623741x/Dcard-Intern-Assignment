@@ -26,7 +26,7 @@ function CityPage(props) {
 			if (observer.current) observer.current.disconnect();
 			observer.current = new IntersectionObserver((entries) => {
 				if (entries[0].isIntersecting && hasMore) {
-					console.log("visible");
+					// console.log("visible");
 
 					setSkip((prevSkip) => {
 						return prevSkip + 30;
