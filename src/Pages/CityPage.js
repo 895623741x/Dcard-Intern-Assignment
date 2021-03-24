@@ -9,13 +9,13 @@ function CityPage(props) {
 
 	const [selectedCity, setSelectedCity] = useState("");
 	const [spots, setSpots] = useState([]);
-	// const [data, setData] = useState([]);
-
 	const [skip, setSkip] = useState(0);
 	const [hasMore, setHasMore] = useState(false);
 
 	if (selectedCity !== city) {
+		setSkip(0);
 		setSpots([]);
+
 		setSelectedCity(city);
 	}
 
@@ -39,42 +39,60 @@ function CityPage(props) {
 	);
 
 	useEffect(() => {
-		const fetchData = async () => {
-			const response = await axios.get(
-				`https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${selectedCity}?$top=30&$skip=${skip}&$format=JSON`
-			);
-			console.log(response.data);
-
-			// 1st and most successful attempt
-			setSpots(() => {
-				let newSpots = [...spots];
-				newSpots.push(...response.data);
-				return newSpots;
+		axios
+			.get(`https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${selectedCity}?$top=30&$skip=${skip}&$format=JSON`)
+			.then((res) => {
+				setHasMore(res.data.length > 0);
+				setSpots((prevSpots) => {
+					if (prevSpots.length === 0) {
+						let newSpots = [...res.data];
+						return newSpots;
+					} else {
+						prevSpots.push(...res.data);
+						let newSpots = [...prevSpots];
+						return newSpots;
+					}
+				});
 			});
+	}, [skip, selectedCity]);
 
-			// 3rd attempt
-			// setSpots((prevSpots) => {
-			// 	let newSpots = [...prevSpots];
-			// 	newSpots.push(...response.data);
-			// 	return newSpots;
-			// });
+	// useEffect(() => {
+	// 	const fetchData = async () => {
+	// 		const response = await axios.get(
+	// 			`https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${selectedCity}?$top=30&$skip=${skip}&$format=JSON`
+	// 		);
+	// 		console.log(response.data);
 
-			// 2nd attempt
-			// setSpots((prevSpots) => {
-			// 	let newSpots = [...prevSpots];
-			// 	newSpots.push(...response.data);
-			// 	return newSpots;
-			// });
+	// 		// 1st and most successful attempt
+	// 		setSpots(() => {
+	// 			let newSpots = [...spots];
+	// 			newSpots.push(...response.data);
+	// 			return newSpots;
+	// 		});
 
-			setHasMore(response.data.length > 0);
-		};
+	// 		// 3rd attempt
+	// 		// setSpots((prevSpots) => {
+	// 		// 	let newSpots = [...prevSpots];
+	// 		// 	newSpots.push(...response.data);
+	// 		// 	return newSpots;
+	// 		// });
 
-		fetchData();
-	}, [selectedCity, skip]);
+	// 		// 2nd attempt
+	// 		// setSpots((prevSpots) => {
+	// 		// 	let newSpots = [...prevSpots];
+	// 		// 	newSpots.push(...response.data);
+	// 		// 	return newSpots;
+	// 		// });
 
-	console.log(city);
-	console.log(selectedCity);
-	console.log(spots);
+	// 		setHasMore(response.data.length > 0);
+	// 	};
+
+	// 	fetchData();
+	// }, [selectedCity, skip]);
+
+	// console.log(city);
+	// console.log(selectedCity);
+	// console.log(spots);
 
 	return (
 		<div className="city-container">
