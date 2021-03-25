@@ -43,56 +43,9 @@ function CityPage(props) {
 			.get(`https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${selectedCity}?$top=30&$skip=${skip}&$format=JSON`)
 			.then((res) => {
 				setHasMore(res.data.length > 0);
-				setSpots((prevSpots) => {
-					if (prevSpots.length === 0) {
-						let newSpots = [...res.data];
-						return newSpots;
-					} else {
-						prevSpots.push(...res.data);
-						let newSpots = [...prevSpots];
-						return newSpots;
-					}
-				});
+				setSpots((prevSpots) => [...prevSpots, ...res.data]);
 			});
 	}, [skip, selectedCity]);
-
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		const response = await axios.get(
-	// 			`https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${selectedCity}?$top=30&$skip=${skip}&$format=JSON`
-	// 		);
-	// 		console.log(response.data);
-
-	// 		// 1st and most successful attempt
-	// 		setSpots(() => {
-	// 			let newSpots = [...spots];
-	// 			newSpots.push(...response.data);
-	// 			return newSpots;
-	// 		});
-
-	// 		// 3rd attempt
-	// 		// setSpots((prevSpots) => {
-	// 		// 	let newSpots = [...prevSpots];
-	// 		// 	newSpots.push(...response.data);
-	// 		// 	return newSpots;
-	// 		// });
-
-	// 		// 2nd attempt
-	// 		// setSpots((prevSpots) => {
-	// 		// 	let newSpots = [...prevSpots];
-	// 		// 	newSpots.push(...response.data);
-	// 		// 	return newSpots;
-	// 		// });
-
-	// 		setHasMore(response.data.length > 0);
-	// 	};
-
-	// 	fetchData();
-	// }, [selectedCity, skip]);
-
-	// console.log(city);
-	// console.log(selectedCity);
-	// console.log(spots);
 
 	return (
 		<div className="city-container">

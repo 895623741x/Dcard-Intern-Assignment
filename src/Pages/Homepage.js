@@ -36,16 +36,7 @@ function HomePage() {
 			`
 			)
 			.then((res) => {
-				setSpots((prevSpots) => {
-					if (prevSpots.length === 0) {
-						let newSpots = [...res.data];
-						return newSpots;
-					} else {
-						prevSpots.push(...res.data);
-						let newSpots = [...prevSpots];
-						return newSpots;
-					}
-				});
+				setSpots((prevSpots) => [...prevSpots, ...res.data]);
 				setHasMore(res.data.length > 0);
 			});
 	}, [skip]);
